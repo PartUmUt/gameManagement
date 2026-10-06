@@ -68,5 +68,29 @@ namespace gameManagement
 
             list();
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            umutaEntities gameDox = new umutaEntities();
+
+            int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["Id"].Value);
+
+            gameDox game = gameDox.gameDox.Find(id);
+
+            game.Game = txtGame.Text;
+            game.Developer = txtDeveloper.Text;
+            game.Genre = txtGenre.Text;
+            game.Platform = txtPlatform.Text;
+            game.Year = int.Parse(txtYear.Text);
+            game.Price = decimal.Parse(txtPrice.Text);
+            game.AgeRating = int.Parse(txtAgeRating.Text);
+            game.Score = decimal.Parse(txtScore.Text);
+            game.GameMode = txtGameMode.Text;
+            game.Stock = int.Parse(Stock.Text);
+
+            gameDox.SaveChanges();
+
+            list();
+        }
     }
 }
