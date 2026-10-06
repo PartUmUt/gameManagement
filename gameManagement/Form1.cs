@@ -92,5 +92,14 @@ namespace gameManagement
 
             list();
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            umutaEntities gameDox = new umutaEntities();
+
+            string search = txtGame.Text;
+
+            dataGridView1.DataSource = gameDox.gameDox.Where(x => x.Game.Contains(search)).ToList();
+        }
     }
 }
