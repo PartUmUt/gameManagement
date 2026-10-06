@@ -34,7 +34,7 @@ namespace gameManagement
             list();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e) // button2 = btnAdd
         {
             umutaEntities gameDox = new umutaEntities();
 
@@ -52,6 +52,18 @@ namespace gameManagement
             newGame.Stock = int.Parse(Stock.Text);
 
             gameDox.gameDox.Add(newGame);
+            gameDox.SaveChanges();
+
+            list();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            umutaEntities gameDox = new umutaEntities();
+
+            int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["Id"].Value);
+
+            gameDox.gameDox.Remove(gameDox.gameDox.Find(id));
             gameDox.SaveChanges();
 
             list();
